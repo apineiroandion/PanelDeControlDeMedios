@@ -6,7 +6,9 @@ import FuncionamientoApp.*;
 import java.awt.*;
 
 public class Reproductor extends JFrame {
-    public Reproductor() {
+    Biblioteca biblioteca;
+    public Reproductor(Biblioteca biblioteca) {
+        this.biblioteca = biblioteca;
         setTitle("Reproductor de Video");
         setSize(500, 500);
         setLocationRelativeTo(null);
