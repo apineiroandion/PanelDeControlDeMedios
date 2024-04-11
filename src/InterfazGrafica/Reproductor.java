@@ -6,9 +6,14 @@ import FuncionamientoApp.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 public class Reproductor extends JFrame {
     Biblioteca biblioteca;
+    private int seleccion;
+    private Float duracion;
+    private String titulo;
+
     public Reproductor(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
         setTitle("Reproductor de Video");
@@ -20,14 +25,21 @@ public class Reproductor extends JFrame {
         //South
         JPanel panelReproduccion = new JPanel();
         panelReproduccion.setLayout(new BoxLayout(panelReproduccion, BoxLayout.X_AXIS));
-        JButton Pause = new JButton("Pause");
-        JButton Play = new JButton("Play");
-        JButton Stop = new JButton("Stop");
+        JButton pause = new JButton("Pause");
+        JButton play = new JButton("Play");
+        JButton stop = new JButton("Stop");
 
-        panelReproduccion.add(Pause);
-        panelReproduccion.add(Play);
-        panelReproduccion.add(Stop);
+        panelReproduccion.add(pause);
+        panelReproduccion.add(play);
+        panelReproduccion.add(stop);
         add(panelReproduccion, BorderLayout.SOUTH);
+
+        play.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
 
 
         //Center
@@ -164,6 +176,20 @@ public class Reproductor extends JFrame {
         gbc.gridy = 4;
         gbc.gridwidth = 3;
         tecladoNumerico.add(b0, gbc);
+        JButton seleccionar = new JButton("Seleccionar");
+        seleccionar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                seleccion = Integer.parseInt(pantalla.getText());
+                pantalla.setText("");
+                titulo = biblioteca.getVideos().get(seleccion).getTitulo();
+                duracion = biblioteca.getVideos().get(seleccion).getDuracion();
+            }
+        });
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.gridwidth = 3;
+        tecladoNumerico.add(seleccionar, gbc);
 
         add(tecladoNumerico, BorderLayout.CENTER);
 
@@ -173,6 +199,12 @@ public class Reproductor extends JFrame {
         progressBar.setStringPainted(true);
 
         add(progressBar, BorderLayout.NORTH);
+
+        //EAST
+        Vector<String> data = new Vector<>(biblioteca.getVideosNames());
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel(data);
+        JComboBox comboBox = new JComboBox(modelo);
+        add(comboBox, BorderLayout.EAST);
 
         setVisible(true);
     }
