@@ -51,7 +51,21 @@ public class Reproductor extends JFrame {
         stop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                timer.restart();
+                timer.stop();
+                progressBar.setValue(0);
+                progressBar.setMinimum(0);
+                progressBar.setMaximum(duracion);
+                timer = new Timer(duracion, new ActionListener() {
+                    int progress = 0;
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        progress++;
+                        progressBar.setValue(progress);
+                        if (progress == duracion) {
+                            timer.stop();
+                        }
+                    }
+                });
             }
         });
 
