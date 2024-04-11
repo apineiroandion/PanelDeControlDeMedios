@@ -4,6 +4,8 @@ import javax.swing.*;
 import FuncionamientoApp.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Reproductor extends JFrame {
     Biblioteca biblioteca;
@@ -33,45 +35,122 @@ public class Reproductor extends JFrame {
         tecladoNumerico.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        JButton b1 = new JButton("1");
+        JTextField pantalla = new JTextField();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
         gbc.gridy = 0;
+        tecladoNumerico.add(pantalla, gbc);
+
+        JButton limpiar = new JButton("Limpiar");
+        limpiar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pantalla.setText("");
+            }
+        });
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        tecladoNumerico.add(limpiar, gbc);
+
+        JButton b1 = new JButton("  1  ");
+        b1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pantalla.setText("1");
+            }
+        });
+        gbc.gridx = 0;
+        gbc.gridy = 1;
         tecladoNumerico.add(b1, gbc);
-        JButton b2 = new JButton("2");
+        JButton b2 = new JButton("  2  ");
+        b2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pantalla.setText("2");
+            }
+        });
         gbc.gridx = 1;
-        gbc.gridy = 0;
+        gbc.gridy = 1;
         tecladoNumerico.add(b2, gbc);
-        JButton b3 = new JButton("3");
+        JButton b3 = new JButton("  3  ");
+        b3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pantalla.setText("3");
+            }
+        });
         gbc.gridx = 2;
-        gbc.gridy = 0;
+        gbc.gridy = 1;
         tecladoNumerico.add(b3, gbc);
-        JButton b4 = new JButton("4");
+        JButton b4 = new JButton("  4  ");
+        b4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pantalla.setText("4");
+            }
+        });
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         tecladoNumerico.add(b4, gbc);
-        JButton b5 = new JButton("5");
+        JButton b5 = new JButton("  5  ");
+        b5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pantalla.setText("5");
+            }
+        });
         gbc.gridx = 1;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         tecladoNumerico.add(b5, gbc);
-        JButton b6 = new JButton("6");
+        JButton b6 = new JButton("  6  ");
+        b6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pantalla.setText("6");
+            }
+        });
         gbc.gridx = 2;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         tecladoNumerico.add(b6, gbc);
-        JButton b7 = new JButton("7");
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        tecladoNumerico.add(b7, gbc);
-        JButton b8 = new JButton("8");
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        tecladoNumerico.add(b8, gbc);
-        JButton b9 = new JButton("9");
-        gbc.gridx = 2;
-        gbc.gridy = 2;
-        tecladoNumerico.add(b9, gbc);
-        JButton b0 = new JButton("0");
+        JButton b7 = new JButton("  7  ");
+        b7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pantalla.setText("  7  ");
+            }
+        });
         gbc.gridx = 0;
         gbc.gridy = 3;
+        tecladoNumerico.add(b7, gbc);
+        JButton b8 = new JButton("  8  ");
+        b8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pantalla.setText("8");
+            }
+        });
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        tecladoNumerico.add(b8, gbc);
+        JButton b9 = new JButton("  9  ");
+        b9.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pantalla.setText("9");
+            }
+        });
+        gbc.gridx = 2;
+        gbc.gridy = 3;
+        tecladoNumerico.add(b9, gbc);
+        JButton b0 = new JButton("0");
+        b0.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pantalla.setText("0");
+            }
+        });
+        gbc.gridx = 0;
+        gbc.gridy = 4;
         gbc.gridwidth = 3;
         tecladoNumerico.add(b0, gbc);
 
