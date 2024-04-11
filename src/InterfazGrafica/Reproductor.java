@@ -11,8 +11,10 @@ import java.util.Vector;
 public class Reproductor extends JFrame {
     Biblioteca biblioteca;
     private int seleccion;
-    private Float duracion;
+    private Integer duracion;
     private String titulo;
+    private Timer timer;
+    JProgressBar progressBar = new JProgressBar();
 
     public Reproductor(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
@@ -37,7 +39,19 @@ public class Reproductor extends JFrame {
         play.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                timer.start();
+            }
+        });
+        pause.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                timer.stop();
+            }
+        });
+        stop.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                timer.restart();
             }
         });
 
@@ -184,6 +198,18 @@ public class Reproductor extends JFrame {
                 pantalla.setText("");
                 titulo = biblioteca.getVideos().get(seleccion).getTitulo();
                 duracion = biblioteca.getVideos().get(seleccion).getDuracion();
+                progressBar.setMaximum(duracion);
+                timer = new Timer(duracion, new ActionListener() {
+                    int progress = 0;
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        progress++;
+                        progressBar.setValue(progress);
+                        if (progress == duracion) {
+                            timer.stop();
+                        }
+                    }
+                });
             }
         });
         gbc.gridx = 0;
@@ -195,8 +221,9 @@ public class Reproductor extends JFrame {
 
 
         //North
-        JProgressBar progressBar = new JProgressBar();
+
         progressBar.setStringPainted(true);
+        progressBar.setMinimum(0);
 
         add(progressBar, BorderLayout.NORTH);
 

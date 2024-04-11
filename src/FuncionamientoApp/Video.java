@@ -2,9 +2,9 @@ package FuncionamientoApp;
 
 public class Video {
     private String titulo;
-    private Float duracion;
+    private Integer duracion;
 
-    public Video(String titulo, Float duracion) {
+    public Video(String titulo, Integer duracion) {
         this.titulo = titulo;
         this.duracion = duracion;
     }
@@ -17,11 +17,11 @@ public class Video {
         this.titulo = titulo;
     }
 
-    public Float getDuracion() {
+    public Integer getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(Float duracion) {
+    public void setDuracion(Integer duracion) {
         this.duracion = duracion;
     }
 }
