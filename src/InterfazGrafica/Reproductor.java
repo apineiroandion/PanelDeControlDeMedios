@@ -14,6 +14,7 @@ public class Reproductor extends JFrame {
     private Integer duracion;
     private String titulo;
     private Timer timer;
+    private String estado;
     JProgressBar progressBar = new JProgressBar();
 
     public Reproductor(Biblioteca biblioteca) {
@@ -39,18 +40,21 @@ public class Reproductor extends JFrame {
         play.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                estado = "Reproduciendo";
                 timer.start();
             }
         });
         pause.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                estado = "Pause";
                 timer.stop();
             }
         });
         stop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                estado = "Stop";
                 timer.stop();
                 progressBar.setValue(0);
                 progressBar.setMinimum(0);
@@ -224,12 +228,26 @@ public class Reproductor extends JFrame {
                         }
                     }
                 });
+                estado = "Stop";
             }
         });
         gbc.gridx = 0;
         gbc.gridy = 5;
         gbc.gridwidth = 3;
         tecladoNumerico.add(seleccionar, gbc);
+
+        JLabel tituloLabel = new JLabel(biblioteca.getVideos().get(seleccion).getTitulo());
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        gbc.gridwidth = 3;
+        tecladoNumerico.add(tituloLabel, gbc);
+
+        JLabel estadoLabel = new JLabel(estado);
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        gbc.gridwidth = 3;
+        tecladoNumerico.add(estadoLabel, gbc);
+
 
         add(tecladoNumerico, BorderLayout.CENTER);
 
